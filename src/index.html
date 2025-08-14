@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello from JAMstack</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2> This is the response from my Dashboard Cloudflare Hello World worker</h2>
+    <p> loading...</p>
+
+    <h2>This is the response from the deployed worker using CLI </h2>
+    <p class="cli"> loading...</p>
+
+
+    <footer>
+        <p style="color: #666; font-size: 12px; margin-top: 300px;">This page is deployed from Cloudflare pages by
+            connecting to github and the owner is <a href="https://github.com/aceqasim">aceqasim</a></p>
+    </footer>
+    <script>
+        const dashUrl = "https://hello-dashboard.qk212022.workers.dev/"
+        const cliUrl = "https://my-first-worker.qk212022.workers.dev/"
+        const fetchAndSetData = async () => {
+            const response = await fetch(dashUrl)
+            const data = await response.json()
+            console.log(data)
+            document.querySelector("p").textContent = data.message
+        }
+        const fetchAndSetCliData = async () => {
+            const response = await fetch(cliUrl)
+            const data = await response.json()
+            console.log(data)
+            document.getElementsByClassName("cli")[0].textContent = data.message
+        }
+        fetchAndSetData()
+        fetchAndSetCliData()
+
+
+    </script>
+
+
+</body>
+
+</html>
